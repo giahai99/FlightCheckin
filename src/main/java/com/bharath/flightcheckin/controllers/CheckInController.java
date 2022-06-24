@@ -10,6 +10,8 @@ import com.bharath.flightcheckin.integration.ReservationRestClient;
 import com.bharath.flightcheckin.integration.dto.Reservation;
 import com.bharath.flightcheckin.integration.dto.ReservationUpdateRequest;
 
+import javax.transaction.Transactional;
+
 @Controller
 public class CheckInController {
 
@@ -29,6 +31,7 @@ public class CheckInController {
 	}
 	
 	@RequestMapping("/completeCheckIn")
+	@Transactional
 	public String completeCheckIn(@RequestParam("reservationId") Long reservationId,
 			@RequestParam("numberOfBags") int numberOfBags) {
 		ReservationUpdateRequest reservationUpdateRequest = new ReservationUpdateRequest();
